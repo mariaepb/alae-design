@@ -6,6 +6,8 @@
     <title>ALAE DESIGN co.</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -21,8 +23,8 @@
 
     <!-- Seção Principal -->
     <section id="home" class="hero">
-        <h1>Criação com essência</h1>
-        <p>Transformamos ideias em experiências visuais únicas. Assim como seu negócio.</p>
+        <h1>Seja bem vindo(a) à Alae Design.</h1>
+        <p>Criando detalhes que tornam momentos inesquecíveis.</p>
         <a href="#contato" class="btn">Fale Conosco</a>
     </section>
 
@@ -30,9 +32,10 @@
     <section id="sobre" class="sobre">
         <h2>Sobre a Alae Design</h2>
         <p>
-            A Alae Design nasceu com o propósito de unir arte, natureza e tecnologia. 
-            Criamos soluções digitais sustentáveis e esteticamente harmônicas, 
-            que refletem autenticidade e propósito em cada projeto.
+            O nome Alae significa asas, e é isso que queremos dar: <span class="verde">liberdade e leveza</span><br>
+            para que cada projeto voe com identidade própria,<br>
+            seja ele um convite de família, um post comemorativo ou<br>
+            a identidade de uma organização.
         </p>
     </section>
 
@@ -55,17 +58,44 @@
         </div>
     </section>
 
-    <!-- Contato -->
-    <section id="contato" class="contato">
-        <h2>Entre em contato</h2>
-        <form id="form-contato">
-            <input type="text" id="nome" placeholder="Seu nome" required>
-            <input type="email" id="email" placeholder="Seu e-mail" required>
-            <textarea id="mensagem" placeholder="Sua mensagem" required></textarea>
-            <button type="submit" class="btn">Enviar</button>
-        </form>
-        <p id="msg-sucesso"></p>
-    </section>
+ <!-- Contato -->
+document.getElementById("form-contato").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const form = e.target; // o próprio formulário
+    const msgSucesso = document.getElementById("msg-sucesso");
+
+    // Envia os dados para o endpoint do Formspree
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            msgSucesso.innerText = "Mensagem enviada com sucesso! ✅";
+            form.reset(); // limpa os campos
+        } else {
+            msgSucesso.innerText = "Ocorreu um erro ao enviar. Tente novamente.";
+        }
+    } catch (error) {
+        msgSucesso.innerText = "Ocorreu um erro ao enviar. Tente novamente.";
+    }
+
+    // Limpa a mensagem de sucesso após 3 segundos
+    setTimeout(() => {
+        msgSucesso.innerText = "";
+    }, 3000);
+});
+
+  
+  <p id="msg-sucesso" style="color: var(--verde-escuro); margin-top: 15px; font-weight: bold;"></p>
+</section>
 
     <!-- Rodapé -->
     <footer>

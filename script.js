@@ -1,22 +1,34 @@
-document.getElementById("form-contato").addEventListener("submit", function (e) {
+document.getElementById("form-contato").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const mensagem = document.getElementById("mensagem").value;
+    const form = e.target; // o próprio formulário
+    const msgSucesso = document.getElementById("msg-sucesso");
 
-    // Simulando o envio para um "banco de dados" local
-    const contato = { nome, email, mensagem, data: new Date().toLocaleString() };
+    // Envia os dados para o endpoint do Formspree
+    const formData = new FormData(form);
 
-    // Salva no localStorage (simulando um banco)
-    let contatos = JSON.parse(localStorage.getItem("contatos")) || [];
-    contatos.push(contato);
-    localStorage.setItem("contatos", JSON.stringify(contatos));
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
 
-    document.getElementById("msg-sucesso").innerText = "Mensagem enviada com sucesso!";
-    document.getElementById("form-contato").reset();
+        if (response.ok) {
+            msgSucesso.innerText = "Mensagem enviada com sucesso! ✅";
+            form.reset(); // limpa os campos
+        } else {
+            msgSucesso.innerText = "Ocorreu um erro ao enviar. Tente novamente.";
+        }
+    } catch (error) {
+        msgSucesso.innerText = "Ocorreu um erro ao enviar. Tente novamente.";
+    }
 
+    // Limpa a mensagem de sucesso após 3 segundos
     setTimeout(() => {
-        document.getElementById("msg-sucesso").innerText = "";
+        msgSucesso.innerText = "";
     }, 3000);
 });
+
