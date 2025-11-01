@@ -1,0 +1,124 @@
+:root {
+    --verde-oliva: #6E7F5C;
+    --verde-escuro: #2E3E2B;
+    --azul-acizentado: #7890A8;
+    --cinza-claro: #C6C3BD;
+    --bege: #FAF9EA;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bege);
+    color: var(--verde-escuro);
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+/* Cabeçalho */
+header {
+    background-color: var(--bege);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    position: sticky;
+    top: 0;
+    border-bottom: 2px solid var(--cinza-claro);
+}
+
+.logo {
+    width: 90px;
+}
+
+nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: var(--verde-escuro);
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--azul-acizentado);
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, var(--verde-oliva), var(--azul-acizentado));
+    color: var(--bege);
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+}
+
+.btn {
+    background-color: var(--verde-escuro);
+    color: var(--bege);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 20px;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: var(--azul-acizentado);
+}
+
+/* Seções */
+section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 280px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    gap: 1rem;
+}
+
+input, textarea {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--cinza-claro);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--verde-escuro);
+    color: var(--bege);
+    text-align: center;
+    padding: 1rem;
+}
